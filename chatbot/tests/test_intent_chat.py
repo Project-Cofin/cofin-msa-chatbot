@@ -4,7 +4,7 @@ from tensorflow.keras import preprocessing
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Embedding, Dense, Dropout, Conv1D, GlobalMaxPool1D, concatenate
 from chatbot.utils.Preprocess import Preprocess
-
+from chatbot.utils.IntentModel import IntentModel
 
 class IntentChat:
     def __init__(self):
@@ -74,12 +74,24 @@ class IntentChat:
         print('loss: %f' % (loss))
 
         # 모델 저장
-        model.save('../data/intent.h5')
+        model.save('../data/intent_model.h5')
 
     def predictModel(self):
-        pass
+        p = Preprocess(word2index_dic='../data/chatbot_dict.bin', userdic='../data/user_dic.tsv')
+
+        intent = IntentModel(model_name='../data/intent_model.h5', proprocess=p)
+
+        query = "미열하고 약간의 기침이 있어요... 코로나일까요? " \
+               "배도 고파요, 저녁 메뉴는 뭘까요? 프로젝트는 잘 마칠수 있겠죠?"
+        predict = intent.predict_class(query)
+        predict_label = intent.labels[predict]
+
+        print(query)
+        print(f'의도 예측 클래스: {predict}')
+        print(f'의도 예측 레이블: {predict_label}')
 
 
 if __name__ == '__main__':
     ic = IntentChat()
     ic.createModel()
+    # ic.predictModel()
