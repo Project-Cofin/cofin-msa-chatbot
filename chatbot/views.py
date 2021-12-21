@@ -3,8 +3,9 @@ from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view, parser_classes
 
 from chatbot.models_data import DbUploader
-from chatbot.models import HealthStatus
-from chatbot.serializer import HealthStatusSerializer
+from chatbot.models import HealthStatus, Chatbot
+from chatbot.serializer import HealthStatusSerializer, ChatbotSerializer
+from chatbot.utils.PredictAnswer import IntentChat
 
 
 @api_view(['GET'])
@@ -32,6 +33,18 @@ def find_by_detail(request):
 @parser_classes([JSONParser])
 def find_all(request):
     print('############ 3 ##########')
-    answer = HealthStatus.objects.raw("select * from health_status group by symptom")
-    serializer = HealthStatusSerializer(answer, many=True)
+    answers = HealthStatus.objects.raw("select * from health_status group by symptom")
+    serializer = HealthStatusSerializer(answers, many=True)
     return JsonResponse(data=serializer.data, safe=False)
+
+
+@api_view(['POST'])
+@parser_classes([JSONParser])
+def chat_answer(request):
+    # print('############ 4 ##########')
+    query = request.data['query']
+    # print(query)
+    label = (IntentChat().predictModel(query))
+
+    answer = Chatbot.objects.filter(label=label).values('answer').order_by('?').first()
+    return JsonResponse(data=answer, safe=False)

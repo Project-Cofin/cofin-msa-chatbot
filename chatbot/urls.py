@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'upload', views.upload),
     url(r'find-by-detail', views.find_by_detail),
     url(r'find-all', views.find_all),
+    url(r'chat-answer', views.chat_answer),
 ]

@@ -91,7 +91,6 @@ class IntentChat:
         # query = '위드코로나때도 굳이 마스크를 착용해야하나요?'
         # query = '백신패스는 어떻게 발급받는거죠? 접종은 안했구, 확진됐다가 완치만 됐는데 대상자인가요?'
         query = '나 머리가 아픈데 이게 뭘까 코로나일까?'
-        query = '집에 가고 싶은데, 코로나일까?'
 
         predict = intent.predict_class(query)
         predict_label = intent.labels[predict]
