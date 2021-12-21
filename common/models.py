@@ -75,6 +75,7 @@ class ValueObject(object):
         ic(model.info())
         ic(model.describe())
 
+
 class ReaderBase(metaclass=ABCMeta):
     @abstractmethod
     def new_file(self):
@@ -92,10 +93,12 @@ class ReaderBase(metaclass=ABCMeta):
     def json(self):
         pass
 
+
 class PrinterBase(metaclass=ABCMeta):
     @abstractmethod
     def dframe(self):
         pass
+
 
 class Reader(ReaderBase):
 
@@ -116,6 +119,7 @@ class Reader(ReaderBase):
 
     def gmaps(self) -> object:
         return googlemaps.Client(key='')
+
 
 class Printer(PrinterBase):
     def dframe(self, this):

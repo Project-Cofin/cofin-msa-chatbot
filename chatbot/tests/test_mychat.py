@@ -8,7 +8,6 @@ from tensorflow.keras.models import Model, load_model
 from tensorflow.keras.layers import Input, Embedding, Dense, Dropout, Conv1D, GlobalMaxPool1D, concatenate
 
 
-
 class MyChat:
     def __init__(self):
         pass
@@ -145,15 +144,12 @@ class MyChat:
         model.summary()
         model.evaluate(test_ds, verbose=2)
 
-        # # TEST 12.17
-        # sample_txt = '미열과 잦은 기침이 있어요 코로나일까요?'
-
-        # 테스트용 데이터셋의 10212번째 데이터 출력
+        # 테스트용 데이터셋의 0번째 데이터 출력
         # print("단어 시퀀스 : ", corpus[0])
         # print("단어 인덱스 시퀀스 : ", padded_seqs[0])
         print("문장 분류(정답) : ", labels[88])
 
-        # 테스트용 데이터셋의 10212번째 데이터 감정 예측
+        # 테스트용 데이터셋의 0번째 데이터 의도 예측
         picks = [88]
         predict = model.predict(padded_seqs[picks])
         predict_class = tf.math.argmax(predict, axis=1)
