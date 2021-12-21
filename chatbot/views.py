@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, parser_classes
 
 from chatbot.models_data import DbUploader
 from chatbot.models import HealthStatus, Chatbot
-from chatbot.serializer import HealthStatusSerializer, ChatbotSerializer
+from chatbot.serializer import HealthStatusSerializer
 from chatbot.utils.PredictAnswer import IntentChat
 
 
@@ -43,8 +43,8 @@ def find_all(request):
 def chat_answer(request):
     # print('############ 4 ##########')
     query = request.data['query']
-    # print(query)
     label = (IntentChat().predictModel(query))
 
     answer = Chatbot.objects.filter(label=label).values('answer').order_by('?').first()
+    answer['queryid'] = request.data['key']
     return JsonResponse(data=answer, safe=False)

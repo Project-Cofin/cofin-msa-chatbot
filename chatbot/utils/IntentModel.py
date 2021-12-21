@@ -1,11 +1,10 @@
 import tensorflow as tf
-from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.models import load_model
 from tensorflow.keras import preprocessing
 
 
 class IntentModel:
     def __init__(self, model_name, proprocess):
-        # self.labels = lambda x: {x: '1'} in range(5)
         self.intents = ['증상 질문', '증상 순서', '경미한 의심증상', '주의단계 의심증상', '치명적인 의심정황',
                         '밀접 접촉자 증상 질문', '경미한 외부접촉', '접종 간격', '확진자 접촉 경미', '코로나 검사 의무',
                         '코로나 검사 타지역', '코로나 검사 가능 여부', '코로나 검사 위치', '코로나 검사 비용', '코로나 치료 비용',
@@ -24,7 +23,6 @@ class IntentModel:
                         '접종 증명서', '접종 후 검사', '검사 후 접종', '백신접종 장점', '백신패스',
                         '1차접종 백신패스', '백신 예약 확인', '상생지원금', '욕설', '알수없음']
         self.labels = {i: label for i, label in enumerate(self.intents)}
-        # print(self.labels)
         self.model = load_model(model_name)
         self.p = proprocess
         self.MAX_SEQ_LEN = 57
