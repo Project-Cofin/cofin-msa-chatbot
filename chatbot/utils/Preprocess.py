@@ -10,7 +10,8 @@ class Preprocess:
             'JX', 'JC',
             'SF', 'SP', 'SS', 'SE', 'SO',
             'EP', 'EF', 'EC', 'ETN', 'ETM',
-            'XSN', 'XSV', 'XSA'
+            'XSN', 'XSV', 'XSA',
+            'VV', 'VX', 'VA', 'VCP'
         ]
         if(word2index_dic != ''):
             f = open(word2index_dic, "rb")

@@ -6,6 +6,7 @@ from tensorflow.keras.layers import Input, Embedding, Dense, Dropout, Conv1D, Gl
 from chatbot.utils.Preprocess import Preprocess
 from chatbot.utils.IntentModel import IntentModel
 
+
 class IntentChat:
     def __init__(self):
         self.MAX_SEQ_LEN = 57
@@ -81,8 +82,17 @@ class IntentChat:
 
         intent = IntentModel(model_name='../data/intent_model.h5', proprocess=p)
 
-        query = "미열하고 약간의 기침이 있어요... 코로나일까요? " \
-               "배도 고파요, 저녁 메뉴는 뭘까요? 프로젝트는 잘 마칠수 있겠죠?"
+        # query = "미열하고 약간의 기침이 있어요... 코로나일까요? " \
+        #        "배도 고파요, 저녁 메뉴는 뭘까요? 프로젝트는 잘 마칠수 있겠죠?"
+        # query = '아침부터 미열하고 인후통이 있어요. 혹시 코로나에 감염된건 아니겠죠?'
+        # query = '어제 제가 있던 건물에서 확진자가 나와서 코로나 검사를 받았어요. 저도 자가격리 대상자인가요?'
+        # query = '95년생은 백신 접종 언제부터 예약이 가능한가요?'
+        # query = '아침에는 37도 정도 나왔는데, 오후되니까 38.3도까지 나와요.. 머리도 아프고 기침도 자꾸 나오는데 코로나 증상일까요..'
+        # query = '위드코로나때도 굳이 마스크를 착용해야하나요?'
+        # query = '백신패스는 어떻게 발급받는거죠? 접종은 안했구, 확진됐다가 완치만 됐는데 대상자인가요?'
+        query = '나 머리가 아픈데 이게 뭘까 코로나일까?'
+        query = '집에 가고 싶은데, 코로나일까?'
+
         predict = intent.predict_class(query)
         predict_label = intent.labels[predict]
 
@@ -93,5 +103,5 @@ class IntentChat:
 
 if __name__ == '__main__':
     ic = IntentChat()
-    ic.createModel()
-    # ic.predictModel()
+    # ic.createModel()
+    ic.predictModel()

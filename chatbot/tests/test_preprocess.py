@@ -9,7 +9,8 @@ class PreTest:
         pass
 
     def execute_sentence(self):
-        sent = '코로나 37.2도 모양은 아래처럼 생겼고 체온을 잴때마다 체온이 달라지고 거의 37도 이상 37.5도 미만으로 나오는데 학교 같은반에 코로나가 있어서 자가격리 중이거든요 ㅠㅠ 너무 불안해요 36도 나올때도 있고 손목재니까 35.6나오고요 ㅠㅠㅠ 저 코로나 일까요..?'
+        # sent = '2022년 1월에 뮤지컬을 보러 가기로 했는데 뮤지컬도 백신을 맞아야만 들어갈 수 있는 건가요? 제가 듣기론 위드 코로나가 코로나 완치자와 19세 미만 청소년 등에게는 해당사항이 없는 걸로 알고 있는데 확실하게 알고 싶어서요'
+        sent = '코로나 감염 질문 제가 지금 코로나에 걸린 상태인데 입대고 마신 음료수가 냉장고에 있거든요 근데 제가 코로나 완치한 후에 그 입대고 마셨던 음료수를 다시 입대고 마시면 다시 코로나에 걸리나요'
 
         p = Preprocess(userdic='../data/user_dic.tsv')
 
@@ -62,8 +63,9 @@ class PreTest:
             except KeyError:
                 print(word, word_index['OOV'])
 
+
 if __name__ == '__main__':
     pt = PreTest()
-    # pt.execute_sentence()
+    pt.execute_sentence()
     # pt.create_wb()
-    pt.test_wb()
+    # pt.test_wb()
