@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: mariadb:latest
+    container_name: chatbot-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "organdb"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+#    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    ports:
+      - "3306:3306"
+    networks:
+      - main-network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lmn165/cofin-chatbot:v1
+    container_name: backend-chatbot
+#    command: sh -c "dockerize -wait tcp://host.docker.internal:3306 -timeout 20s && python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    ports:
+      - "8000:8002"
+    volumes:
+      - .:/backend-chatbot/
+    expose:
+      - "8002"
+    depends_on:
+      - db
+networks:
+  main-network:
+    driver: bridge
