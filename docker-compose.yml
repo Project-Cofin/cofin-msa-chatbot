@@ -19,14 +19,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: lmn165/cofin-chatbot:v1
+    image: lmn165/cofin-chatbot:2.0
     container_name: backend-chatbot
-#    command: sh -c "dockerize -wait tcp://host.docker.internal:3306 -timeout 20s && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "dockerize -wait tcp://host.docker.internal:3306 -timeout 20s && python manage.py runserver 0.0.0.0:8002"
     restart: always
     ports:
-      - "8000:8002"
+      - "8002:8002"
     volumes:
-      - .:/backend-chatbot/
+      - .:/web
     expose:
       - "8002"
     depends_on:

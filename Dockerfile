@@ -1,6 +1,6 @@
 FROM wegiot/tensorflow-python3.7
 
-WORKDIR /backend-chatbot
+WORKDIR /cofin-msa-chatbot
 COPY . .
 COPY requirements.txt requirements.txt
 RUN python -m pip install --upgrade pip
@@ -28,6 +28,6 @@ ENV DOCKERIZE_VERSION v0.2.0
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-ENTRYPOINT ["dockerize", "-wait", "tcp://host.docker.internal:3306", "-timeout", "20s"]
+#ENTRYPOINT ["dockerize", "-wait", "tcp://host.docker.internal:3306", "-timeout", "20s"]
 #CMD ["python", "manage.py", "migrate"]
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8002"]
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8002"]
