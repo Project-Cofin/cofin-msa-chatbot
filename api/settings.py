@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'organdb',
+        'NAME': 'corona_db',
         'USER': 'root',
         'PASSWORD':'root',
         'HOST':'host.docker.internal',
